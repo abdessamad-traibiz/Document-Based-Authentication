@@ -17296,12 +17296,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xD8AD70d3FA3650E580B6768b667aa740b02A6747",
-      "transactionHash": "0xddfa462a2f35fd27b62e154de25b69cb55588001ae9e9367097751fa4f393dee"
+      "address": "0x22c1474665EA7a391915cF597C207d7cE8250165",
+      "transactionHash": "0x61cf165e4144bd2a546fbacb77469267a29c1d3f5f64d973486ea37e5e2ea8bc"
     }
   },
   "schemaVersion": "3.4.11",
-  "updatedAt": "2023-01-12T22:38:58.545Z",
+  "updatedAt": "2023-01-14T18:36:36.494Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
