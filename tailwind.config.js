@@ -19,10 +19,14 @@ module.exports = {
         'color8': '#3A3A47',
         'color9': '#D6D3D3',
         'color10': '#FFE5F1',
+        'color11': '#F8F9F8',
         'stroke1': '#ADA2FF',
+        'stroke2': '#D6D3D3',
+        'stroke3': 'rgba(214, 211, 211, 0.50)',
       },
       width: {
         '0.2': '0.2px',
+        '62': '250px',
         '450': '450px',
         '560': '560px',
         '660': '660px',
@@ -30,7 +34,9 @@ module.exports = {
       },
       height: {
         '0.2': '0.2px',
-        '380': '380px'
+        '380': '380px',
+        '550': '550px',
+        '650': '590px',
       },
       fontSize: {
         'xs': '13px',
@@ -55,6 +61,9 @@ module.exports = {
       spacing: {
         '19': '4.5rem',
       },
+      borderRadius: {
+        '1lg': '10px',
+      }
     },
   },
   plugins: [],

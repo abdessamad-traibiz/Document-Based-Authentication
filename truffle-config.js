@@ -8,7 +8,7 @@ module.exports = {
         development: {
             host: '127.0.0.1',
             port: '8545',
-            network_id: '*' //connect to any network
+            network_id: '*', //connect to any network
         }
     },
     contracts_directory: './src/contracts',

@@ -57,13 +57,10 @@ const ScanQRcode = ({ action }) => {
 
   return (
     <>
-      <div className="mt-16 text-2xl text-center font-semibold">
-        Or scan QR code
-      </div>
-      <div className="mt-16 z-20 relative bg-color3 w-560 h-full p-10 rounded-3xl m-auto flex flex-col items-center justify-center ">
+      <div className="mt-12 z-20 relative bg-color11 border border-gray-200 w-560 h-fit p-8 rounded-3xl m-auto flex flex-col items-center justify-center ">
         <div
-          className={`border-2 border-dotted bg-background w-full h-full rounded-xl ${
-            isDragActive ? "border-color5" : "border-color3"
+          className={`border-2 border-dotted bg-white w-full h-full rounded-xl ${
+            isDragActive ? "border-color5" : "border-gray-200"
           }`}
         >
           <div
@@ -83,21 +80,21 @@ const ScanQRcode = ({ action }) => {
             <div className="text-0base text-center flex flex-col">
               <p className="text-color6">
                 <span className="text-color5 cursor-pointer">
-                  Click to browse QR code
+                  Cliquez pour parcourir le code QR
                 </span>{" "}
-                or drag and drop
+                ou faites glisser
               </p>
               <p className="text-color6">
-                your QR code here to start scanning.
+                et déposez votre code QR ici pour commencer à le scanner.
               </p>
             </div>
           </div>
         </div>
 
         {isDropped && 
-          <div className="group mt-4 bg-background rounded-2xl w-full h-full py-5 px-6 flex flex-row space-x-7 items-center justify-center relative">
-            <img src={preview} alt="" className="w-44 h-44" />
-            <div onClick={readQRCode} className="flex border border-gray-300 bg-color4 py-2 px-6 w-fit h-10 mt-7 rounded-xl items-center justify-center transition-all duration-500 ease-in-out hover:shadow-sm cursor-pointer">
+          <div className="group mt-4 bg-white border border-gray-200 rounded-2xl w-full h-full py-5 px-6 flex flex-row space-x-7 items-center justify-center relative">
+            <img src={preview} alt="" className="w-48 h-48 border border-gray-200 rounded-xl p-1 bg-color11" />
+            <div onClick={readQRCode} className="flex border border-gray-200 bg-color4 py-2 px-6 w-fit h-10 mt-7 rounded-xl items-center justify-center transition-all duration-500 ease-in-out hover:shadow-sm cursor-pointer">
               {pending ?
                 (
                   <Oval
@@ -112,7 +109,7 @@ const ScanQRcode = ({ action }) => {
                 )
               : 
                 (
-                  <p className="text-color5 text-1base">Scan QrCode</p>
+                  <p className="text-color6 text-1base">Scan QrCode</p>
                 )
               }
             </div>

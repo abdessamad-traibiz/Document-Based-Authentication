@@ -37,27 +37,38 @@ contract AuthDoc{
         return numberOfStudents > 0 ? true : false;
     }
 
-    function add(address _owner, string memory _idDip, string memory _cin, string memory _diploma, string memory _studentName, 
-                string memory _cne, string memory _image) public returns (bytes32) {
-        // Student storage student = Students[numberOfStudents];
+    // function add(address _owner, string memory _idDip, string memory _cin, string memory _diploma, string memory _studentName, 
+    //             string memory _cne, string memory _image) public returns (bytes32) {
+    //     // Student storage student = Students[numberOfStudents];
 
-        bytes32 _hash = keccak256(abi.encodePacked(_idDip));
-        Students[_hash].owner = _owner;
-        Students[_hash].idDip = _idDip;
-        Students[_hash].cin = _cin;
-        Students[_hash].diploma = _diploma;
-        Students[_hash].studentName = _studentName;
-        Students[_hash].cne = _cne;
-        Students[_hash].image = _image;
+    //     bytes32 _hash = keccak256(abi.encodePacked(_idDip));
+    //     Students[_hash].owner = _owner;
+    //     Students[_hash].idDip = _idDip;
+    //     Students[_hash].cin = _cin;
+    //     Students[_hash].diploma = _diploma;
+    //     Students[_hash].studentName = _studentName;
+    //     Students[_hash].cne = _cne;
+    //     Students[_hash].image = _image;
 
-        numberOfStudents++;
+    //     numberOfStudents++;
 
-        return keccak256(abi.encodePacked(_idDip));
+    //     return keccak256(abi.encodePacked(_idDip));
+    // }
+
+    function getStudent(string memory _id) public view 
+            returns(string memory, string memory, string memory, string memory, string memory, string memory) { 
+        bytes32 _hash = keccak256(abi.encodePacked(_id));
+        return (Students[_hash].idDip, Students[_hash].cin, Students[_hash].diploma, Students[_hash].studentName, 
+            Students[_hash].cne, Students[_hash].image);
     }
 
-    function getStudent(string memory _id) public view returns(string memory idDip) { 
+    function getIdDip(string memory _id) public view returns(string memory idDip) { 
         bytes32 _hash = keccak256(abi.encodePacked(_id));
-        return (Students[_hash].idDip);
+        return Students[_hash].idDip;
+    }
+
+    function getIdDipFromQrCode(bytes32 _hash) public view returns(string memory idDip) {
+        return Students[_hash].idDip;
     }
 
     function verifyDoc(string memory _id) public view returns(bool) {
@@ -78,13 +89,15 @@ contract AuthDoc{
         return Students[_hash].image;
     }
 
-    // function setStudent(uint256 _id, string memory idDip, string memory cin, string memory diploma, string memory studentName, string memory cne, string memory image) public { 
-    //     Students[_id].idDip = idDip;
-    //     Students[_id].cin = cin;
-    //     Students[_id].diploma = diploma;
-    //     Students[_id].studentName = studentName;
-    //     Students[_id].cne = cne;
-    //     Students[_id].image = image;
-    // } 
+    function setStudent(address _owner, string memory _idDip, string memory _cin, string memory _diploma, string memory _studentName, string memory _cne, string memory _image) public { 
+        bytes32 _hash = keccak256(abi.encodePacked(_idDip));
+        require(Students[_hash].owner == _owner, "You are not the administration of this student");
+        Students[_hash].idDip = _idDip;
+        Students[_hash].cin = _cin;
+        Students[_hash].diploma = _diploma;
+        Students[_hash].studentName = _studentName;
+        Students[_hash].cne = _cne;
+        Students[_hash].image = _image;
+    } 
 
 }

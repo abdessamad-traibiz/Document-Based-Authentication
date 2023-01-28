@@ -1,12 +1,16 @@
 import React, { useContext } from 'react'
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { AuthContext } from '../contexts/Auth'
 
-const AuthenticatedRoute = () => {
+const AuthenticatedRoute = ({children}) => {
   const { state: ContextState } = useContext(AuthContext);
   const { isAuthenticated } = ContextState;
   
-  return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+  if(!isAuthenticated) {
+    return <Navigate to="/" />;
+  }
+
+  return children;
 }
 
 export default AuthenticatedRoute

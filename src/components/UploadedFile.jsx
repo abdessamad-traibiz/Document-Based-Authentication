@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { ReactComponent as UploadLogo } from "../assets/icons/upload.svg";
 import { ReactComponent as CsvIcon } from "../assets/icons/csvIcon.svg";
 
-import { AddStudent, addStudent, hashQrCode } from "../Utils/Web3Client";
+import { AddStudent, hashQrCode } from "../Utils/Web3Client";
 import { Oval } from "react-loader-spinner";
 import Papa from "papaparse";
 import QRCode from 'qrcode';
@@ -29,6 +29,7 @@ const UploadedFile = ({ document, acceptedFiles, isDropped, showToast }) => {
       data.map((item, index) => (
         item.owner = localStorage.getItem("authDocUser")
       ))
+      console.log(data)
 
       AddStudent(data)
         .then((tx) => {
@@ -48,9 +49,9 @@ const UploadedFile = ({ document, acceptedFiles, isDropped, showToast }) => {
           /* Downloading the QR codes generated from the CSV file. */
           downloadQrCode(images);
           showToast()
-        }).catch((err) => {
-          console.log(err);
-        })
+      }).catch((err) => {
+        console.log(err);
+      })
       
       setPending(false)
     }, 3000);
@@ -76,8 +77,8 @@ const UploadedFile = ({ document, acceptedFiles, isDropped, showToast }) => {
   }
 
   return (
-    <div className="group mt-4 bg-background rounded-2xl w-full h-full py-3 px-6 flex items-center justify-start relative">
-      <CsvIcon className="w-11 h-11 bg-dark p-2.5 rounded-2xl"/>
+    <div className="group mt-4 bg-white border border-gray-200 rounded-2xl w-full h-full py-3 px-6 flex items-center justify-start relative">
+      <CsvIcon className="w-11 h-11 bg-color7 p-2.5 rounded-2xl"/>
       <div className="flex items-start flex-col pl-6">
         <div className="text-color2 opacity-100 text-2lg">
           {document.path}

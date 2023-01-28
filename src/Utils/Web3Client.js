@@ -122,6 +122,12 @@ export const verifyQr = async (hash) => {
 }
 
 
+/**
+ * It takes an id_dip as a parameter, sets the selectedAccount in localStorage, and then calls the
+ * downloadDip function in the smart contract.
+ * @param id_dip - the id of the diploma
+ * @returns a promise.
+ */
 export const downloadDiploma = async (id_dip) => {
     if(!isInitialized)
         await init();
@@ -133,6 +139,12 @@ export const downloadDiploma = async (id_dip) => {
         .call();
 }
 
+/**
+ * It takes a hash as a parameter, sets the selectedAccount in localStorage, and then calls the
+ * downloadDipQrCode function in the smart contract.
+ * @param hash - the hash of the diploma
+ * @returns a promise.
+ */
 export const downloadDiplomaQrCode = async (hash) => {
     if(!isInitialized)
         await init();
@@ -142,4 +154,45 @@ export const downloadDiplomaQrCode = async (hash) => {
     return authDoc_contract.methods
         .downloadDipQrCode(hash)
         .call();
+}
+
+/**
+ * It gets the student info from the blockchain.
+ * @param id_dip - the diploma's id
+ * @returns student's infos
+ */
+export const getStudentInfo = async (id_dip) => {
+    if(!isInitialized)
+        await init();
+
+    localStorage.setItem("authDocUser", selectedAccount)
+
+    return authDoc_contract.methods
+        .getStudent(id_dip)
+        .call();
+}
+
+/**
+ * It takes 6 parameters and returns a promise.
+ * @param id_dip - the id of the diploma
+ * @param cin - string
+ * @param diploma - diploma number
+ * @param studentName - string
+ * @param cne - string
+ * @param image - is a base64 string
+ * @returns the transaction hash.
+ */
+export const updateStudentInfo = async (id_dip, cin, diploma, studentName, cne, image) => {
+    if(!isInitialized)
+        await init();
+
+    localStorage.setItem("authDocUser", selectedAccount)
+
+    return authDoc_contract.methods
+        .setStudent(selectedAccount, id_dip, cin, diploma, studentName, cne, image)
+        .send({ 
+            from: selectedAccount, 
+            gas: 3432190, 
+            gasPrice: null
+        });
 }
